@@ -1,0 +1,15 @@
+.recipeList{
+    color: black;
+}
+
+.recipeWrapper{
+    width: 90%;
+    margin-top: 50px;
+    height: auto;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
