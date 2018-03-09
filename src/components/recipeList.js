@@ -30,6 +30,7 @@ export default class RecipeList extends React.Component{
         };
         this.toggleHidden=this.toggleHidden.bind(this);
         this.updateRecipes=this.updateRecipes.bind(this);
+        this.deleteRecipe=this.deleteRecipe.bind(this);
     }
     
     toggleHidden () {
@@ -51,13 +52,24 @@ export default class RecipeList extends React.Component{
         this.setState({recipes:newRecipes});
     }
     
+    deleteRecipe(recipe){
+       var newlist=this.state.recipes;
+       for(var i=0;i<newlist.length;i++){
+           if(newlist[i].name===recipe){
+               newlist.splice(i,1);
+           }
+           
+       }
+       this.setState({recipes:newlist});
+    }
+    
     render(){
         //{!this.state.isHidden && <Child />}
         
-        var list=this.state.recipes.map(function(recipe,i){
+        var list=this.state.recipes.map(function(recipe,index){
             //counter++;
-           return <Recipe key={recipe.name+" "+i}recipes={recipe} /> 
-        });
+           return <Recipe delete={this.deleteRecipe} key={index} recipes={recipe} value={index} /> 
+        },this); //-------------->bind recipe to recipeList!!!
         
         return (
                 <div className="recipeWrapper">
